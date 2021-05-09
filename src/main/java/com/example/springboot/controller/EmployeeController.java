@@ -1,7 +1,7 @@
 package com.example.springboot.controller;
 
-import java.util.List;
-
+import com.example.springboot.model.Employee;
+import com.example.springboot.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -11,8 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.example.springboot.model.Employee;
-import com.example.springboot.service.EmployeeService;
+import java.util.List;
 
 @Controller
 public class EmployeeController {
@@ -49,16 +48,16 @@ public class EmployeeController {
 	    }
 	 @GetMapping("/page/{pageNo}")
 	 public String findPaginated(@PathVariable(value = "pageNo") int pageNo, Model model) {
-	     int pageSize = 3;
+		 int pageSize = 5;
 
-	     Page < Employee > page = employeeService.findPaginated(pageNo, pageSize);
-	     List < Employee > listEmployees = page.getContent();
+		 Page<Employee> page = employeeService.findPaginated(pageNo, pageSize);
+		 List<Employee> listEmployees = page.getContent();
 
-	     model.addAttribute("currentPage", pageNo);
-	     model.addAttribute("totalPages", page.getTotalPages());
-	     model.addAttribute("totalItems", page.getTotalElements());
-	     model.addAttribute("listEmployees", listEmployees);
-	     return "index";
+		 model.addAttribute("currentPage", pageNo);
+		 model.addAttribute("totalPages", page.getTotalPages());
+		 model.addAttribute("totalItems", page.getTotalElements());
+		 model.addAttribute("listEmployees", listEmployees);
+		 return "index";
 	 }
 
 }
