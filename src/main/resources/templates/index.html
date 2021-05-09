@@ -30,8 +30,10 @@
      <td th:text="${employee.firstName}"></td>
      <td th:text="${employee.lastName}"></td>
      <td th:text="${employee.email}"></td>
-     <td> <a th:href="@{/showFormForUpdate/{id}(id=${employee.id})}" class="btn btn-primary">Update</a></td>
-     <a th:href="@{/deleteEmployee/{id}(id=${employee.id})}" class="btn btn-danger">Delete</a>
+     <td>
+      <a class="btn btn-primary" th:href="@{/showFormForUpdate/{id}(id=${employee.id})}">Update</a>
+      <a class="btn btn-danger" th:href="@{/deleteEmployee/{id}(id=${employee.id})}">Delete</a></td>
+     </td>
     </tr>
    </tbody>
   </table>
