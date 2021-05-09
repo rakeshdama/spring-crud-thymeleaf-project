@@ -19,7 +19,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     private EmployeeRepository employeeRepository;
 
     @Override
-    public List < Employee > getAllEmployees() {
+    public List<Employee> getAllEmployees() {
         return employeeRepository.findAll();
     }
 
@@ -30,7 +30,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Employee getEmployeeById(long id) {
-        Optional < Employee > optional = employeeRepository.findById(id);
+        Optional<Employee> optional = employeeRepository.findById(id);
         Employee employee = null;
         if (optional.isPresent()) {
             employee = optional.get();
@@ -46,9 +46,9 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public Page < Employee > findPaginated(int pageNo, int pageSize, String sortField, String sortDirection) {
+    public Page<Employee> findPaginated(int pageNo, int pageSize, String sortField, String sortDirection) {
         Sort sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortField).ascending() :
-            Sort.by(sortField).descending();
+                Sort.by(sortField).descending();
 
         Pageable pageable = PageRequest.of(pageNo - 1, pageSize, sort);
         return this.employeeRepository.findAll(pageable);
