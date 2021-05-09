@@ -26,6 +26,11 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
+    public void deleteEmployeeById(long id) {
+        this.employeeRepository.deleteById(id);
+    }
+
+    @Override
     public Employee getEmployeeById(long id) {
         Optional<Employee> optional = employeeRepository.findById(id);
         Employee employee = null;
